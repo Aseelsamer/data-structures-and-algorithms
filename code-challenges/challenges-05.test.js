@@ -39,6 +39,14 @@ function Star(){
   name=this.name;
   height=this.height;
   eye_color-=this.eye_color;
+
+  let container = $('#template').clone();
+  container.removeClass('template');
+  container.find('.h2').text(this.name);
+  container.find('.h3').text(this.height);
+  container.find('.p').text(this.eye_color);
+ 
+  return container;
 }
 
 // const templateWithJQuery = () => {
@@ -52,13 +60,7 @@ function Star(){
 // }
 
 
-  let container = $('#template').clone();
-  container.removeClass('template');
-  container.find('.h2').text(this.name);
-  container.find('.h3').text(this.height);
-  container.find('.p').text(this.eye_color);
- 
-  return container;
+  
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
@@ -75,7 +77,7 @@ For example, if the input is 'Welcome', the output will be:
 const howMuchPencil = (str) => {
   let result = [];
   // Solution code here...
-  for(let i=0;i<str.length;i++){
+  for(let i=0;i<=str.length;i++){
     result.push(str.slice(i));
   }
   return result;
@@ -141,12 +143,11 @@ const gruffaloCrumble = {
 const listFoods = (recipe) => {
   let result = [];
   // Solution code here...
-  recipe.ingredients.forEach(ingredients=>{
-    const withoutNum=ingredients.slice(ingredients.indexOf(' ')+1);
-    const withoutUnit=withoutNum.slice(ingredients.indexOf(' ')+1);
+  recipe.ingredients.forEach(ingredient => {
+    const withoutAmount = ingredient.slice(ingredient.indexOf(' ') + 1);
+    const withoutUnit = withoutAmount.slice(withoutAmount.indexOf(' ') + 1);
     result.push(withoutUnit);
-  })
-
+  });
   return result;
 };
 
@@ -161,6 +162,9 @@ You may also use other string or array methods.
 const splitFoods = (recipe) => {
   let result = [];
   // Solution code here...
+  recipe.ingredients.forEach(ingredient =>{
+    const foodItems=ingredient.split(' ').splice(2).join(' ');
+    result.push(foodItems);})
   return result;
 };
 
