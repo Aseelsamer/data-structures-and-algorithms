@@ -4,35 +4,41 @@ CHALLENGE 1 - Review
 
 Build a simple express server. Connect a '/hello' route that sends a greeting of your  choice. Connect a '/aboutme' route that sends a short bio about you to the front-end. Finally, connect a '/favoritefoods' route that sends an array to the front-end of your favorite foods. All other routes should respond with a status of 404.
 ------------------------------------------------------------------------------------------------ */
-const PORT = process.env.PORT;
-const express = require ('express');
-
-server.get('/hello',helloFunction)
-server.get('/aboutme',aboutFunction)
-server.get('favoritefoods',foodFunction)
-
-
-function helloFunction(){
-  console.log('Congratulations!!')
-}
-function aboutFunction(){
-  let greet = 'My name is Aseel , welcome to my website';
-  console.log(greet);
-}
-function foodFunction(){
-  let food = ['burger','pizza','fried potato']
-  console.log(food);
-}
 
 const createServer = () => {
   // Solution code here...
+  const PORT = process.env.PORT;
+  const express = require ('express');
+  const cors=require('cors');
+  require('dotenv').config();
+  const server=express();
+  server.use(cors());
+  
+  server.get('/hello',helloFunction);
+  server.get('/aboutme',aboutFunction);
+  server.get('favoritefoods',foodFunction);
+  
+  
+  function helloFunction(req,res){
+    res.status(200).send('Congratulations!!');
+    
+    // console.log('Congratulations!!')
+  }
+  let greet = 'My name is Aseel , welcome to my website';
+  function aboutFunction(req,res){
+    // console.log(greet);
+    res.status(200).send(greet);
+  }
+  let food = ['burger','pizza','fried potato'];
+  function foodFunction(req,res){
+    // console.log(food);
+res.status(200).send(food);
+  }
 
   var server = app.listen(3301, function () {
     var port = server.address().port;
     console.log('Example app listening at port', port);
-    helloFunction();
-    aboutFunction();
-    foodFunction();
+    
   });
   return server;
 };
@@ -49,9 +55,19 @@ For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 
 const count = (target, input) => {
   // Solution code here...
-return target.filter((u)=> (u===input)).length;
-};
-console.log((arr, 5));
+  var newArray;
+  let secArray = input.reduce((acc,val,idx) => {
+    acc=acc.concat(val);
+    return acc;
+  },[]);
+  let numOfcounts=secArray.filter(val=>{
+    if(val==target){
+      return true;
+    }
+  })
+  return numOfcounts.length
+
+}
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -69,10 +85,15 @@ const totalSum = (input) => {
   // },0);
   // console.log(sum);
 
-input.reduce((a, b) => a + b)
-  
+  var count=0;
+  for(let i=0; i<input.length;i++){
+    for(let j=0;j<input[i].length;j++){
+      counter+=input[i][j];
+    }
+   
+}
+ return count;
 };
-console.log(totalSum);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -91,12 +112,17 @@ const nums=[ [0,2,5,4], [2,4,10], [] ]
 const divisibleByFiveTwoToThePower = (input) => {
   // Solution code here...
 
-var output = nums.filter(function(num){
-  return num%5 !== 0 || [];
-});
-console.log(output);
-};
-divisibleByFiveTwoToThePower();
+  let numsArr = [];
+  for(let i = 0; i < input.length; i++){
+    let array = [];
+    for(let j = 0; j < input[i].length; j++){
+      if(input[i][j] % 5 == 0 && typeof input[i][j] === 'number'){
+        array.push(Math.pow(2, input[i][j]));
+      }
+    }
+    numsArr.push(array);
+  }
+  return numsArr;
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5 - Stetch Goal
