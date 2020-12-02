@@ -1,7 +1,7 @@
 'use strict';
 
 // to learn more about the cheerio library and what it is doing, look at their documentation: https://www.npmjs.com/package/cheerio
-const cheerio = require('cheerio');
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1 - Review
@@ -19,9 +19,9 @@ let $ = createSnippetWithJQuery(`
 
 const changeAllClassNames = () => {
   // Solution code here...
-  $('#apple').find('li').text('Apple');
-  $('#orange').find('li').text('Orange');
-  $('li').addClass('fruit');
+  $('#.apple').find('li').text('Apple');
+  $('.orange').find('li').text('Orange');
+  $('li').addClass('.fruit');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -32,12 +32,7 @@ Write a function named sortBackwards that takes in an array of numbers and retur
 
 const sortBackwards = (arr) => {
   // Solution code here...
-  return arr.sort((a,b)=> {
-    if (a.arr < b.arr){return 1;
-    }else if (a.arr >b.arr){
-      return -1;
-    }else {return 0;}
-  })
+ return arr.sort((a,b)=> b - a)
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -52,13 +47,7 @@ For example, ['Alphabet', 'Zebra', 'alphabet', 'carrot'] is correctly sorted.
 
 const alphabetize = (arr) => {
   // Solution code here...
-  arr.sort((a,b)=>{
-    if (a.toUpperCase() < b.toUpperCase()){
-      return 1;
-    }else if(a.toLowerCase() > b.toLowerCase()){
-      return 0 ;
-    }else {return 0;}
-  })
+  return arr.sort();
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -82,6 +71,16 @@ For example, ['Alphabet', 'alphabet', 'carrot', 'Zebra'] is correctly sorted, an
 
 const alphabetizeBetter = (arr) => {
   // Solution code here...
+  return arr.sort((a, b) => {
+    const aa = a.toLowerCase();
+    const bb = b.toLowerCase();
+    if (aa > bb)
+        return 1;
+    if (aa < bb)
+        return -1;
+    if (aa === bb)
+        return 0;
+});
 };
 
 /* ------------------------------------------------------------------------------------------------
