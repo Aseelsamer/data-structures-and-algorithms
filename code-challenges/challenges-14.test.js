@@ -31,7 +31,9 @@ For example, ['apple', 'banana', 'MacGyver'] returns ['Apple', 'Banana', 'MacGyv
 
 const toTitleCase = (arr) => {
   // Solution code here...
+
   return arr.map(i=> i.charAt(0).toUpperCase()+i.slice(1))
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -107,7 +109,9 @@ let starWarsData = [{
 
 let biggerThanLuke = (arr) => {
   // Solution code here...
+
   return arr.filter(i=> parseInt(i.mass)>77).map(i=>i.name).join('-')
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -126,6 +130,7 @@ This data could be sorted by name or price.
 
 const sortBy = (property, arr) => {
   // Solution code here...
+
   return arr.sort((a,b)=>{
     if(a[property]<b[property]){
       return -1
@@ -137,6 +142,7 @@ const sortBy = (property, arr) => {
       return 0
     }
   })
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -153,7 +159,7 @@ https:/missingslash.org returns false because the URL is malformed
 ------------------------------------------------------------------------------------------------ */
 const isSecure = (url) => {
   // Solution code here...
-  
+
 };
 
 /* ------------------------------------------------------------------------------------------------
